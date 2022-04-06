@@ -20,28 +20,28 @@ public class LocaleData {
 
     public void englishRun() throws IOException {
         ReaderStuff englishOutput = new ReaderStuff("englishdictionary.txt",
-                "\nEnter the poles of letters:",
+                "Enter the poles of letters:",
                 "\nAll possible answers:");
         System.out.println(englishOutput);
     }
 
     public void swedishRun() throws IOException {
         ReaderStuff swedishOutput = new ReaderStuff("swedishdictionary.txt",
-                "\nVänligen ange krafsa bokstäverna:",
+                "Vänligen ange krafsa bokstäverna:",
                 "\nAll möjliga svar:");
         System.out.println(swedishOutput);
     }
 
     public void spanishRun() throws IOException {
         ReaderStuff spanishOutput = new ReaderStuff("spanishdictionary.txt",
-                "\nPor favor ingrese los polos de las letras:",
+                "Por favor ingrese los polos de las letras:",
                 "\nTodas las respuestas posibles:");
         System.out.println(spanishOutput);
     }
 
     public void filipinoRun() throws IOException {
         ReaderStuff filipinoOutput = new ReaderStuff("filipinodictionary.txt",
-                "\nPumili ng mga letra:",
+                "Pumili ng mga letra:",
                 "\nLahat ng posibling sagot:");
         System.out.println(filipinoOutput);
 
