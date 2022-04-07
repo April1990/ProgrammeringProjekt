@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
@@ -14,7 +15,7 @@ public class ReaderStuff extends ScannerStuff implements CharacterCountMap{
 
     //Extended the ScannerStuff class and add new parameter of a String fileName
     //It will add any locale object
-    public ReaderStuff(String fileName, String keyboardInput, String consulOutput) throws IOException {
+    public ReaderStuff(String fileName, String keyboardInput, String consulOutput){
         super(keyboardInput);
         this.fileName = fileName;
         this.consulOutput = consulOutput;
@@ -25,34 +26,42 @@ public class ReaderStuff extends ScannerStuff implements CharacterCountMap{
         Map<Character, Integer> lettersCountMap  = CharacterCountMap.getCharacterCountMap(super.letters);
         System.out.println(consulOutput);
 
-        fileReader = new FileReader(fileName);
+
+        try {
+            fileReader = new FileReader(fileName);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         bufferedReader = new BufferedReader(fileReader);
 
         //for loop: first statement is to read every line from the file and save it in the currentWord object;
         //the second is the condition that allow the .readLine method to read more until there is still line to read
         //the last statement is the iterator allows to get the next line to iterate each time to the loop
-        for (currentWord = bufferedReader.readLine(); currentWord != null; currentWord = bufferedReader.readLine()) {
+        try {
+            for (currentWord = bufferedReader.readLine(); currentWord != null; currentWord = bufferedReader.readLine()) {
 
-            //Implementing the getCharacterCountMap Method in the CharacterCountMap interface and has passed new
-            //parameter from the fileReader which was saved in the String of currentWord and pass as a new object
-            //of Map of Character and Integers
-            Map<Character, Integer> currentWordMap  = CharacterCountMap.getCharacterCountMap(currentWord);
+                //Implementing the getCharacterCountMap Method in the CharacterCountMap interface and has passed new
+                //parameter from the fileReader which was saved in the String of currentWord and pass as a new object
+                //of Map of Character and Integers
+                Map<Character, Integer> currentWordMap  = CharacterCountMap.getCharacterCountMap(currentWord);
 
-            //Matching the lettersCountMap and the currentWordMap
-            canMakeCurrentWord = true;
-            for (Character character : currentWordMap.keySet()) {
-                int currentWordCharCount = currentWordMap.get(character);
-                int lettersCharCount = lettersCountMap.getOrDefault(character, 0);
+                //Matching the lettersCountMap and the currentWordMap
+                canMakeCurrentWord = true;
+                for (Character character : currentWordMap.keySet()) {
+                    int currentWordCharCount = currentWordMap.get(character);
+                    int lettersCharCount = lettersCountMap.getOrDefault(character, 0);
 
-                if (currentWordCharCount > lettersCharCount) {
-                    canMakeCurrentWord = false;
-                    break;
+                    if (currentWordCharCount > lettersCharCount) {
+                        canMakeCurrentWord = false;
+                        break;
+                    }
                 }
-            }
-            if (canMakeCurrentWord) {
-                System.out.println(currentWord);
-            }
+                if (canMakeCurrentWord) {
+                    System.out.println(currentWord);
+                }
+            } bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        bufferedReader.close();
     }
 }

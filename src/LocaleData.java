@@ -1,6 +1,3 @@
-import java.io.IOException;
-import java.util.ArrayList;
-
 //This is a class for the different languages. We can create new language by just creating new object
 //that can read the file dictionary for a specific desire language.
 //I did it like this to make it easier to add another language without the need of creating another classes
@@ -18,28 +15,28 @@ public class LocaleData {
         System.out.println("||==========================||");
     }
 
-    public void englishRun() throws IOException {
+    public void englishRun() {
         ReaderStuff englishOutput = new ReaderStuff("englishdictionary.txt",
                 "Enter the poles of letters:",
                 "\nAll possible answers:");
         System.out.println(englishOutput);
     }
 
-    public void swedishRun() throws IOException {
+    public void swedishRun()  {
         ReaderStuff swedishOutput = new ReaderStuff("swedishdictionary.txt",
                 "Vänligen ange krafsa bokstäverna:",
                 "\nAll möjliga svar:");
         System.out.println(swedishOutput);
     }
 
-    public void spanishRun() throws IOException {
+    public void spanishRun() {
         ReaderStuff spanishOutput = new ReaderStuff("spanishdictionary.txt",
                 "Por favor ingrese los polos de las letras:",
                 "\nTodas las respuestas posibles:");
         System.out.println(spanishOutput);
     }
 
-    public void filipinoRun() throws IOException {
+    public void filipinoRun()  {
         ReaderStuff filipinoOutput = new ReaderStuff("filipinodictionary.txt",
                 "Pumili ng mga letra:",
                 "\nLahat ng posibling sagot:");
